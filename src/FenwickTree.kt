@@ -1,12 +1,12 @@
 import kotlin.collections.*
 
-open class FenwickTree(val a: Array<Int>) {
-    val tree = Array<Int>(a.size + 1, {x -> 0})
+open class FenwickTree(val values: List<Int>) {
+    val tree = Array<Int>(values.size + 1, {x -> 0})
     init {
-        for (i in 1 .. a.size) {
-            tree[i] = tree[i - 1] + a[i - 1]
+        for (i in 1 .. values.size) {
+            tree[i] = tree[i - 1] + values[i - 1]
         }
-        for (i in a.size downTo 1) {
+        for (i in values.size downTo 1) {
             tree[i] -= tree[i - (i and -i)]
         }
     }

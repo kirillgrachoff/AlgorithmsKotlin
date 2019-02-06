@@ -1,8 +1,11 @@
 import DisjointSet
 import FenwickTree
+import PartitionTree
 
 fun main() {
-    val t = FenwickTree(Array(10, {x -> 1}))
-    t.add(1, -1)
-    println(t.sum(10))
+    val t = PartitionTree(List<Int>(4, {1}), {a: Int, b: Int -> a + b})
+    println(t.tree[0])
+    println(t.get(0, 3))
+    println("Hello")
+
 }
