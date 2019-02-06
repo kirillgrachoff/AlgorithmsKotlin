@@ -1,6 +1,6 @@
 import kotlin.collections.*
 
-class FenwickTree(val a: Array<Int>) {
+open class FenwickTree(val a: Array<Int>) {
     val tree = Array<Int>(a.size + 1, {x -> 0})
     init {
         for (i in 1 .. a.size) {
@@ -11,15 +11,8 @@ class FenwickTree(val a: Array<Int>) {
         }
     }
 
-    fun get(pos: Int): Int {
-        return sum(pos)
-    }
-
-    fun set(pos: Int, value: Int) {
-        add(pos, value - tree[pos])
-    }
-
     fun sum(pos: Int): Int {
+        assert(pos < tree.size)
         var k = pos
         var s = 0
         while (k > 0) {
@@ -27,6 +20,11 @@ class FenwickTree(val a: Array<Int>) {
             k -= k and -k
         }
         return s
+    }
+
+    fun sum(l: Int, r: Int): Int {
+        assert((l > 0) and (l <= r))
+        return sum(r) - sum(l - 1)
     }
 
     fun add(pos: Int, value: Int) {
