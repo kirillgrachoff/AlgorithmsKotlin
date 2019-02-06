@@ -17,11 +17,8 @@ open class DisjointSet(val n: Int) {
     fun unite(a: Int, b: Int) {
         var a = search(a)
         var b = search(b)
-        if (size[a] < size[b]) {
-            val t = a
-            a = b
-            b = t
-        }
+        if (a == b) return
+        if (size[a] < size[b]) { val t = a; a = b; b = t }
         link[b] = a
         size[a] += size[b]
     }
